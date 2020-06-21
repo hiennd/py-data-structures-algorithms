@@ -1,6 +1,6 @@
 # Implement your function below.
 '''
-O(max(len(a), len(b)))
+O(max(n, m)
 '''
 def common_elements(a, b):
     result = []
