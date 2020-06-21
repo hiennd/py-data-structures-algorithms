@@ -1,5 +1,8 @@
 import unittest
 # Implement your function below.
+'''
+O(n)
+'''
 def is_rotation(list1, list2):
     ## check length
     n = len(list1)
