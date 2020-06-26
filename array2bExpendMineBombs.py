@@ -17,7 +17,9 @@ def click(field, num_rows, num_cols, given_i, given_j):
         i, j = to_check.pop()
         for r in range(i - 1, i + 2):
             for c in range(j - 1, j + 2):
-                if r >= 0 and r < num_rows and c >= 0 and c < num_cols and field[r][c] == 0:
+                if r < 0 or r >= num_rows or c < 0 or c >= num_cols:
+                    continue
+                if field[r][c] == 0:
                     field[r][c] = -2
                     to_check.add((r, c))
     return field
