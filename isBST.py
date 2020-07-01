@@ -13,38 +13,7 @@ class Node:
 def is_bst(node, lower_lim = None, upper_lim = None):
     if node is None:
         return True
-    current = node
-    while current.left is not None:
-        value = current.value
-        current = current.left
-        if not check_left(current, value):
-            return False
-    current = node
-    while current.right is not None:
-        value = current.value
-        current = current.right
-        if not check_right(current, value):
-            return False    
     return True
-def check_left(node, root_value):
-    current = node
-    while current.left is not None:
-        current = current.left
-        if current.value > root_value:
-            return False
-    current = node
-    while current.right is not None:
-        current = current.right
-        if current.value > root_value:
-            return False
-    return True
-def check_right(current, root_value):
-    while current.right is not None:
-        current = current.right
-        if current.value < root_value:
-            return False
-    return True
-
 
 # A function for creating a tree.
 # Input:
