@@ -3,18 +3,24 @@ import timeit
 from collections import deque
 class Queue():
     def __init__(self):
-        self.items = deque() 
+        self.items = deque()
     def enque(self, data):
         self.items.appendleft(data)
     def deque(self):
         return self.items.pop()
+    def size(self):
+        return len(self.items)
+        
+    def __str__(self):
+        return ' '.join([str(item) for item in self.items])
+
 
 class LRU_Cache(object):
 
     def __init__(self, capacity):
         # Initialize class variables
         self.bucket = dict()
-        self.freq = dict()
+        self.queue = Queue()
         self.capacity = capacity
     
     def is_full(self):
@@ -25,17 +31,25 @@ class LRU_Cache(object):
         if key not in self.bucket:
             return -1
         value = self.bucket.get(key)
-        self.freq[key] = self.freq.get(key) + 1
+        if self.queue.size() == self.capacity - 1:
+            self.queue.deque()
+        self.queue.enque(key)
+        print(f'Queue', self.queue)
         return value
 
     def set(self, key, value):
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item. 
         if key not in self.bucket and self.is_full():
-            to_remove_key = min(*self.freq, key =lambda key: self.freq[key]) ## O(n)
+            to_remove_key = self.queue.deque()
+            if to_remove_key == key:
+                to_remove_key = self.queue.deque()
+            print(f'To remove {to_remove_key}')
             self.bucket.pop(to_remove_key)
-            self.freq.pop(to_remove_key)   
         self.bucket[key] = value
-        self.freq[key] = self.freq.get(key, 0) + 1
+        self.queue.enque(key)
+        if self.queue.size() == self.capacity - 1:
+            self.queue.deque()
+        print(f'Queue', self.queue)
 
 class Test(unittest.TestCase):
     def test(self):
