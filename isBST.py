@@ -10,10 +10,22 @@ class Node:
 
 
 # Implement your function below.
-def is_bst(node, lower_lim = None, upper_lim = None):
-    if node is None:
-        return True
-    return True
+def is_bst(node, min_key = None, max_key = None):
+    ## basics: check min < node < max if not none
+    if min_key != None and min_key > node.value:
+        return False
+    if max_key != None and max_key < node.value:
+        return False
+
+    ## recurssive
+    is_bst_left = True
+    if node.left:
+        is_bst_left = is_bst(node.left, min_key, node.value)
+    is_bst_right = True
+    if is_bst_left and node.right:
+        is_bst_right = is_bst(node.right, node.value, max_key)
+
+    return is_bst_left and is_bst_right
 
 # A function for creating a tree.
 # Input:

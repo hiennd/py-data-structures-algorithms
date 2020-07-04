@@ -48,10 +48,10 @@ def travese_tree(tree_node):
 def traverse(result, node):
     if node is None:
         return
-    ## visit
-    result.append(node.value)
     ## left
     traverse(result, node.left)
+    ## visit
+    result.append(node.value)
     ## right
     traverse(result, node.right)
 
