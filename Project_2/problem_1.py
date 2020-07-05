@@ -14,7 +14,7 @@ class LRU_Cache(object):
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent. 
         if key not in self.bucket:
-            print(f'Bucket afer getting {key}:', str(self.bucket))
+            #print(f'Bucket afer getting {key}:', str(self.bucket))
             return -1
         value = self.bucket.get(key)
         self.bucket.move_to_end(key) 
@@ -27,7 +27,7 @@ class LRU_Cache(object):
             self.bucket.popitem(last = False) ## remove first in
         self.bucket[key] = value
         self.bucket.move_to_end(key)
-        print(f'Bucket afer setting {key}:', str(self.bucket))
+        #print(f'Bucket afer setting {key}:', str(self.bucket))
         
 class Test(unittest.TestCase):
     def test_given_queue_6_5_2_1_4__321_remove_key_3(self):
@@ -46,6 +46,9 @@ class Test(unittest.TestCase):
         our_cache.set(6, 6)
 
         self.assertEqual(-1, our_cache.get(3))     # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
+            
+        print(f'our_cache.get(3) = {our_cache.get(3)}')
+        ## expected -1
 
     def test_given_queue_2_6_5_3_4__432_1_remove_key_1(self):
         print('test_given_queue_2_6_5_3_4remove_key_1')
@@ -65,6 +68,9 @@ class Test(unittest.TestCase):
         self.assertEqual(2, our_cache.get(2))    
         self.assertEqual(-1, our_cache.get(1))   # returns -1 because the cache reached it's capacity and 1 was the least recently used entry
 
+        print(f'our_cache.get(1) = {our_cache.get(1)}')
+        ## expected -1
+
     def test_given_queue_65_3443_1221_remove_key_2(self): 
         print('test_given_queue_2653_4_43_21_21_remove_key_2')
         our_cache = LRU_Cache(5)
@@ -83,6 +89,9 @@ class Test(unittest.TestCase):
         our_cache.set(6, 6)
 
         self.assertEqual(-1, our_cache.get(2))   # returns -1 because the cache reached it's capacity and 2 was the least recently used entry
+
+        print(f'our_cache.get(2) = {our_cache.get(2)}')
+        ## expected -1
     
 
 if __name__ == "__main__":
