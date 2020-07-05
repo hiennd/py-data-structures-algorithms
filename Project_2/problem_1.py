@@ -18,7 +18,7 @@ class LRU_Cache(object):
             return -1
         value = self.bucket.get(key)
         self.bucket.move_to_end(key) 
-        print(f'Bucket afer getting {key}:', str(self.bucket))
+        #print(f'Bucket afer getting {key}:', str(self.bucket))
         return value
 
     def set(self, key, value):
@@ -28,10 +28,9 @@ class LRU_Cache(object):
         self.bucket[key] = value
         self.bucket.move_to_end(key)
         print(f'Bucket afer setting {key}:', str(self.bucket))
-
         
 class Test(unittest.TestCase):
-    def test_given_queue_6_5_2_1_4__321_then_remove_key_3(self):
+    def test_given_queue_6_5_2_1_4__321_remove_key_3(self):
         print('test_given_queue_6_5_2_1_4_remove_key_3')
         our_cache = LRU_Cache(5)
         our_cache.set(1, 1)
@@ -48,7 +47,7 @@ class Test(unittest.TestCase):
 
         self.assertEqual(-1, our_cache.get(3))     # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
 
-    def test_given_queue_2_6_5_3_4__432_1_then_remove_key_1(self):
+    def test_given_queue_2_6_5_3_4__432_1_remove_key_1(self):
         print('test_given_queue_2_6_5_3_4remove_key_1')
         our_cache = LRU_Cache(5)
         our_cache.set(1, 1)
@@ -66,7 +65,7 @@ class Test(unittest.TestCase):
         self.assertEqual(2, our_cache.get(2))    
         self.assertEqual(-1, our_cache.get(1))   # returns -1 because the cache reached it's capacity and 1 was the least recently used entry
 
-    def test_given_queue_65_3443_1221_then_remove_key_2(self): 
+    def test_given_queue_65_3443_1221_remove_key_2(self): 
         print('test_given_queue_2653_4_43_21_21_remove_key_2')
         our_cache = LRU_Cache(5)
         our_cache.set(1, 1)
