@@ -28,6 +28,8 @@ class LRU_Cache(object):
         self.bucket[key] = value
         self.bucket.move_to_end(key)
         print(f'Bucket afer setting {key}:', str(self.bucket))
+
+        
 class Test(unittest.TestCase):
     def test_given_queue_6_5_2_1_4__321_remove_key_3(self):
         print('test_given_queue_6_5_2_1_4_remove_key_3')
