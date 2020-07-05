@@ -18,7 +18,7 @@ def find_files(suffix, path):
     result = list()
     find_files_memoized(suffix, path, result)
     return result
-    
+
 def find_files_memoized(suffix, path, collector):
 
     ## Base Recursion O(1)
@@ -38,9 +38,34 @@ def find_files_memoized(suffix, path, collector):
 ##
 def test_given_dirs_without_suffic():
     print('\n'.join(find_files(None, './Project_2/testdir')))
-def test_given_dirs_with_suffic():
+def test_given_dirs_with_suffic_c():
     print('\n'.join(find_files('.c', './Project_2/testdir')))
+def test_given_dirs_with_suffic_h():
+    print('\n'.join(find_files('.h', './Project_2/testdir')))
 print('--------')
 test_given_dirs_without_suffic()
+## expected: 
+# ./Project_2/testdir/subdir4/.gitkeep
+# ./Project_2/testdir/subdir3/subsubdir1/b.h
+# ./Project_2/testdir/subdir3/subsubdir1/b.c
+# ./Project_2/testdir/t1.c
+# ./Project_2/testdir/subdir2/.gitkeep
+# ./Project_2/testdir/subdir5/a.h
+# ./Project_2/testdir/subdir5/a.c
+# ./Project_2/testdir/t1.h
+# ./Project_2/testdir/subdir1/a.h
+# ./Project_2/testdir/subdir1/a.c
 print('--------')
-test_given_dirs_with_suffic()
+test_given_dirs_with_suffic_c()
+## expected:
+# ./Project_2/testdir/subdir3/subsubdir1/b.c
+# ./Project_2/testdir/t1.c
+# ./Project_2/testdir/subdir5/a.c
+# ./Project_2/testdir/subdir1/a.c
+print('--------')
+test_given_dirs_with_suffic_h()
+## expected
+# ./Project_2/testdir/subdir3/subsubdir1/b.h
+# ./Project_2/testdir/subdir5/a.h
+# ./Project_2/testdir/t1.h
+# ./Project_2/testdir/subdir1/a.h
