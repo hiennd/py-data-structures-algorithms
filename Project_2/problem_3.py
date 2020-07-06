@@ -31,6 +31,8 @@ class HuffermanNode(object):
         return codes
 
 def huffman_encoding(data):
+    if data is None or len(data) == 1:
+        return ('0', None)
     ## build historgram O(n)
     hist = dict()
     for char in data:
@@ -53,6 +55,8 @@ def huffman_encoding(data):
 
 ## Time: O(n)
 def huffman_decoding(encoded_data, tree):
+    if tree == None:
+        return '0'
     decoded_data = ''
     node = tree
     for char in encoded_data:
@@ -120,6 +124,26 @@ class Test_Huffmane(unittest.TestCase):
     
 
         print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+        print ("The content of the data is: {}\n".format(a_great_sentence))
+        print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+        print ("The content of the encoded data is: {}\n".format(encoded_data))
+        print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+        print ("The content of the encoded data is: {}\n".format(decoded_data))
+
+    def test_null(self):
+        print('------------------------------------------')
+        a_great_sentence = None
+        print('Testing None', a_great_sentence)
+        encoded_data, tree = huffman_encoding(a_great_sentence)
+        decoded_data = huffman_decoding(encoded_data, tree)
+
+    def test_one_char(self):
+        print('------------------------------------------')
+        a_great_sentence = 'a'
+        print('Testing', a_great_sentence)
+        encoded_data, tree = huffman_encoding(a_great_sentence)
+        decoded_data = huffman_decoding(encoded_data, tree)
+        
         print ("The content of the data is: {}\n".format(a_great_sentence))
         print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
         print ("The content of the encoded data is: {}\n".format(encoded_data))

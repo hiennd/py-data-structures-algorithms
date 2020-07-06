@@ -49,6 +49,7 @@ class BlockChain:
 class TestAdding(unittest.TestCase):
 
     def test_adding_invalid_block(self):
+        print('test_adding_invalid_block')
         blockchain = BlockChain()
         invalid_block = Block(time.time(), 'Test Invalid Block', 'randome_hash')
 
@@ -56,6 +57,7 @@ class TestAdding(unittest.TestCase):
         self.assertTrue(blockchain.verify())
 
     def test_adding_valid_block(self):
+        print('test_adding_valid_block')
         blockchain = BlockChain()
         block = Block(time.time(), 'Test Valid Block', blockchain.last_block.hash)
 
@@ -63,6 +65,7 @@ class TestAdding(unittest.TestCase):
         self.assertTrue(blockchain.verify())
     
     def test_verifing(self):
+        print('test_verifing')
         blockchain = BlockChain()
         previous_hash = blockchain.last_block.hash 
         for i in range(100):

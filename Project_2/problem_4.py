@@ -64,20 +64,26 @@ for i in range(1_000_000):
     parent.add_group(   Group('Child_' + str(i)).add_group(sub_child) )
 
 class TestClass(unittest.TestCase):
-
-
     def test_looking_up_within_users(self):
+        print('test_looking_up_within_users')
         self.assertTrue(is_user_in_group(sub_child_user, sub_child))
     def test_looking_up_groups_in_group(self):
+        print('test_looking_up_groups_in_group')
         self.assertTrue(is_user_in_group(sub_child_user, child))
     def test_looking_up_three_levels(self):
         self.assertTrue(is_user_in_group(sub_child_user, parent))
-    
+
+    def test_user_not_found(self):
+        start = timeit.default_timer()
+        self.assertFalse(is_user_in_group('New User', parent))
+        stop =  timeit.default_timer()
+        print(f'test user not found: runtime {stop - start}')   
+
     def test_duplicates_sub_child_in_groups(self):
         start = timeit.default_timer()
         self.assertTrue(is_user_in_group(sub_child_user, parent))
         stop =  timeit.default_timer()
-        print(f'test_1000_duplicates_sub_child_in_groups: {stop - start}')
+        print(f'test_1000_duplicates_sub_child_in_groups- runtime: {stop - start}')
     
 if __name__ == '__main__':
     unittest.main()

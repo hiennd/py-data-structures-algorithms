@@ -14,11 +14,9 @@ class LRU_Cache(object):
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent. 
         if key not in self.bucket:
-            #print(f'Bucket afer getting {key}:', str(self.bucket))
             return -1
         value = self.bucket.get(key)
         self.bucket.move_to_end(key) 
-        #print(f'Bucket afer getting {key}:', str(self.bucket))
         return value
 
     def set(self, key, value):
@@ -27,7 +25,6 @@ class LRU_Cache(object):
             self.bucket.popitem(last = False) ## remove first in
         self.bucket[key] = value
         self.bucket.move_to_end(key)
-        #print(f'Bucket afer setting {key}:', str(self.bucket))
         
 class Test(unittest.TestCase):
     def test_given_queue_6_5_2_1_4__321_remove_key_3(self):
