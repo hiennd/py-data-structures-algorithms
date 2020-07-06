@@ -14,12 +14,6 @@ class HuffermanNode(object):
         return HuffermanNode(self.freq, None, node2, self)
     def __lt__(self, value):
         return self.freq < value.freq
-    def __str__(self):
-        if not self.left and not self.right:
-            if self.char:
-                return f'{self.char}:{str(self.freq)}'
-            return str(self.freq)
-        return f'[{str(self.left)}-{str(str(self.right))}]'
     def get_codes(self):
         codes = dict()
         def code_char(s, hf_node):
@@ -75,6 +69,7 @@ class Test_Huffmane(unittest.TestCase):
 
     def test_good_rate_compressing(self):
         a_great_sentence = "The bird is the word"
+        print('Testing ', a_great_sentence)
 
         print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
         print ("The content of the data is: {}\n".format(a_great_sentence))
@@ -95,6 +90,7 @@ class Test_Huffmane(unittest.TestCase):
 
     def test_hight_frequecy(self):
         a_great_sentence = "AaaaaAAAaaaaaaaaa   bbbb"
+        print('Testing ', a_great_sentence)
         encoded_data, tree = huffman_encoding(a_great_sentence)
         self.assertEqual(32, sys.getsizeof(int(encoded_data, base=2)) )
         self.assertEqual('011111101101101111111111101001001000000000', encoded_data)
@@ -104,6 +100,7 @@ class Test_Huffmane(unittest.TestCase):
 
     def test_no_duplication(self):
         a_great_sentence = "ABCDEFGHIJKLMNOPQRSTUVXWY"
+        print('Testing ', a_great_sentence)
         encoded_data, tree = huffman_encoding(a_great_sentence)
         self.assertEqual(48, sys.getsizeof(int(encoded_data, base=2)) )
         self.assertEqual('111000111011100111011100011111110001011001110001111001111011100101101110000010000110000011100101100001111001111111100000011110000001011100110111111100011001110000011011101', encoded_data)
