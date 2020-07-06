@@ -33,7 +33,8 @@ def is_user_in_group(user, group):
     return is_user_in_group_mem(user, group, dict())
 
 def is_user_in_group_mem(user, group, marker):
-    ## Base Condition: O(n) where n is max-number of users in one group
+    ## Base Condition: worst-case O(n) where n is max-number of users in one group, 
+    # but with memozied marker dictionary the auxillary runtime is O(1)
     if group in marker:
         return marker[group]
     resutl = False
@@ -42,7 +43,7 @@ def is_user_in_group_mem(user, group, marker):
         resutl = True
     else:
         marker[group] = False
-    ## Recurrsive calls
+    ## Recurrsive calls ưith memozied marker dictionary -> max n time calls
     for sub_group in group.get_groups():
         return is_user_in_group_mem(user, sub_group, marker)
     return resutl
@@ -60,7 +61,7 @@ parent.add_group(child)
 Please node that this will increase total runtime of the py script itself but not the solution
 '''
 for i in range(1_000_000):
-    parent.add_group(   Group('Child2' + str(i)).add_group(sub_child) )
+    parent.add_group(   Group('Child_' + str(i)).add_group(sub_child) )
 
 class TestClass(unittest.TestCase):
 
