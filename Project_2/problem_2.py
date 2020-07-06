@@ -1,4 +1,5 @@
 import os
+
 def find_files(suffix, path):
     """
     Find all files beneath path with file name suffix.
@@ -25,15 +26,15 @@ def find_files_memoized(suffix, path, collector):
     if os.path.isfile(path):
         if not suffix or path.endswith(suffix):
             collector.append(path)
-            return collector  ## return 'testdir/subdir1/a.h'
+            return collector  
         return None
     elif not os.path.isdir(path):  
-        return None       ##2. testdir/subdir1
+        return None      
     
     ## Recurrsive calls
-    directories = os.listdir(path) ##['subdir4', 'subdir3', 't1.c', 'subdir2', 'subdir5', 't1.h', 'subdir1']  ##2. ## ['a.h', 'a.c']
+    directories = os.listdir(path) 
     for directory in directories:
-        find_files_memoized(suffix, path + '/' + directory, collector) ## testdir/subdir1  ##2.['testdir/subdir1/a.h', 'testdir/subdir1/a.c']
+        find_files_memoized(suffix, path + '/' + directory, collector)
     return collector
 ##
 def test_given_dirs_without_suffic():
