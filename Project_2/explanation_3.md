@@ -7,8 +7,8 @@ Using this module, the class HuffmanNode has to maintain a tree structure, which
 Because building HuffmanTree is kind of map and reduce, so it's fine, there is no duplication in memory for saving all nodes in the tree structures.
 Besides, using tree structure increas code readability, compared to jumping indecies in an array.
 **Time Complexity Analysis**
- - Runtime: O(n), n is the length of input string /text
-We need to go through all characters so it requires at least O(n)
+ - Runtime: O(nlogn), n is the length of input string /text
+We need to go through all characters so it requires at least O(n) then we need to heapify from them, it takes O(nlogn)
 Sorting and Resorting take only O(logn) with the benefit of Priority Queue with Heap.
  **Space Complexity Analysis**
  - Space: O(n)
