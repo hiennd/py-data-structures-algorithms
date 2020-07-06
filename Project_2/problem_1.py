@@ -31,6 +31,7 @@ class LRU_Cache(object):
         
 class Test(unittest.TestCase):
     def test_given_queue_6_5_2_1_4__321_remove_key_3(self):
+        print('------------------------------------------')
         print('test_given_queue_6_5_2_1_4_remove_key_3')
         our_cache = LRU_Cache(5)
         our_cache.set(1, 1)
@@ -51,6 +52,7 @@ class Test(unittest.TestCase):
         ## expected -1
 
     def test_given_queue_2_6_5_3_4__432_1_remove_key_1(self):
+        print('------------------------------------------')
         print('test_given_queue_2_6_5_3_4remove_key_1')
         our_cache = LRU_Cache(5)
         our_cache.set(1, 1)
@@ -72,6 +74,7 @@ class Test(unittest.TestCase):
         ## expected -1
 
     def test_given_queue_65_3443_1221_remove_key_2(self): 
+        print('------------------------------------------')
         print('test_given_queue_2653_4_43_21_21_remove_key_2')
         our_cache = LRU_Cache(5)
         our_cache.set(1, 1)

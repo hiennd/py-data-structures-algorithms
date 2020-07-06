@@ -69,6 +69,7 @@ class Test_Huffmane(unittest.TestCase):
 
     def test_good_rate_compressing(self):
         a_great_sentence = "The bird is the word"
+        print('------------------------------------------')
         print('Testing ', a_great_sentence)
 
         print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
@@ -90,6 +91,7 @@ class Test_Huffmane(unittest.TestCase):
 
     def test_hight_frequecy(self):
         a_great_sentence = "AaaaaAAAaaaaaaaaa   bbbb"
+        print('------------------------------------------')
         print('Testing ', a_great_sentence)
         encoded_data, tree = huffman_encoding(a_great_sentence)
         self.assertEqual(32, sys.getsizeof(int(encoded_data, base=2)) )
@@ -98,7 +100,15 @@ class Test_Huffmane(unittest.TestCase):
         self.assertEqual(73, sys.getsizeof( decoded_data ))
         self.assertEqual('AaaaaAAAaaaaaaaaa   bbbb', decoded_data)
 
+        print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+        print ("The content of the data is: {}\n".format(a_great_sentence))
+        print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+        print ("The content of the encoded data is: {}\n".format(encoded_data))
+        print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+        print ("The content of the encoded data is: {}\n".format(decoded_data))
+
     def test_no_duplication(self):
+        print('------------------------------------------')
         a_great_sentence = "ABCDEFGHIJKLMNOPQRSTUVXWY"
         print('Testing ', a_great_sentence)
         encoded_data, tree = huffman_encoding(a_great_sentence)
@@ -107,6 +117,14 @@ class Test_Huffmane(unittest.TestCase):
         decoded_data = huffman_decoding(encoded_data, tree)
         self.assertEqual(74, sys.getsizeof( decoded_data ))
         self.assertEqual('ABCDEFGHIJKLMNOPQRSTUVXWY', decoded_data)
+    
+
+        print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+        print ("The content of the data is: {}\n".format(a_great_sentence))
+        print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+        print ("The content of the encoded data is: {}\n".format(encoded_data))
+        print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+        print ("The content of the encoded data is: {}\n".format(decoded_data))
 
 if __name__ == "__main__":
     unittest.main()
