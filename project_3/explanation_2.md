@@ -3,4 +3,4 @@
 - Time Complexity: O(logn)
 as result of using binary search methodology.
 **Spcace Complexity**
-O(n) as new arrays (list sliding) created for using in `binary_search`
+at most O(n) as new arrays (list sliding) created for using in `binary_search`
