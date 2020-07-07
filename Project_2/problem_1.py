@@ -2,11 +2,11 @@ import unittest
 from collections import OrderedDict
 
 class LRU_Cache(object):
-    '''
-    Args:
-    capacity: is Nullable for purpose of disabling caches
-    '''
     def __init__(self, capacity):
+        '''
+        Args:
+        capacity: is Nullable for purpose of disabling caches
+        '''
         # Initialize class variables
         self.bucket = OrderedDict()
         self.capacity = capacity

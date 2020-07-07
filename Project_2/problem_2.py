@@ -43,6 +43,10 @@ def test_given_dirs_with_suffic_c():
     print('\n'.join(find_files('.c', './Project_2/testdir')))
 def test_given_dirs_with_suffic_h():
     print('\n'.join(find_files('.h', './Project_2/testdir')))
+def test_given_dirs_with_empty_suffic():
+    print('\n'.join(find_files('', './Project_2/testdir')))
+def test_given_dirs_with_not_found_suffic():
+    print('\n'.join(find_files('boeser', './Project_2/testdir')))
 print('--------')
 test_given_dirs_without_suffic()
 ## expected: 
@@ -70,3 +74,19 @@ test_given_dirs_with_suffic_h()
 # ./Project_2/testdir/subdir5/a.h
 # ./Project_2/testdir/t1.h
 # ./Project_2/testdir/subdir1/a.h
+print('--------')
+test_given_dirs_with_empty_suffic()
+## expected: 
+# ./Project_2/testdir/subdir4/.gitkeep
+# ./Project_2/testdir/subdir3/subsubdir1/b.h
+# ./Project_2/testdir/subdir3/subsubdir1/b.c
+# ./Project_2/testdir/t1.c
+# ./Project_2/testdir/subdir2/.gitkeep
+# ./Project_2/testdir/subdir5/a.h
+# ./Project_2/testdir/subdir5/a.c
+# ./Project_2/testdir/t1.h
+# ./Project_2/testdir/subdir1/a.h
+# ./Project_2/testdir/subdir1/a.c
+print('--------')
+test_given_dirs_with_not_found_suffic()
+## expected: empty
