@@ -2,7 +2,10 @@ import unittest
 from collections import OrderedDict
 
 class LRU_Cache(object):
-
+    '''
+    Args:
+    capacity: is Nullable for purpose of disabling caches
+    '''
     def __init__(self, capacity):
         # Initialize class variables
         self.bucket = OrderedDict()
@@ -13,13 +16,19 @@ class LRU_Cache(object):
 
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent. 
-        if key not in self.bucket:
+        if not self.capacity or key not in self.bucket:
             return -1
         value = self.bucket.get(key)
         self.bucket.move_to_end(key) 
         return value
-
+    
+    '''
+        Setting  into an empty LRU_Cache takes no effects but no warning
+    '''
     def set(self, key, value):
+        if not self.capacity:
+            print('Warn: Trying to set value into an empty caches.')
+            return
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item. 
         if key not in self.bucket and self.is_full():
             self.bucket.popitem(last = False) ## remove first in
@@ -90,6 +99,15 @@ class Test(unittest.TestCase):
 
         self.assertEqual(-1, our_cache.get(2))   # returns -1 because the cache reached it's capacity and 2 was the least recently used entry
 
+        print(f'our_cache.get(2) = {our_cache.get(2)}')
+        ## expected -1
+
+    def test_given_queue_none_capacity_then_return_minus_one(self): 
+        print('------------------------------------------')
+        print('test_given_queue_2653_4_43_21_21_remove_key_2')
+        our_cache = LRU_Cache(0)
+        our_cache.set(2, 2)
+        self.assertEqual(-1, our_cache.get(2))  
         print(f'our_cache.get(2) = {our_cache.get(2)}')
         ## expected -1
     
