@@ -119,9 +119,21 @@ print('expected empty')
 print('____Test___Case___3')
 linked_list_5 = LinkedList([1, 2, 3])
 linked_list_6 = LinkedList([])
-## expected 3 -> 2 -> 4 -> 35 -> 6 -> 65 -> 23 -> 1 -> 7 -> 8 -> 9 -> 11 -> 21 -> 
-print ('         ', union(linked_list_3,linked_list_4))
-print('expected  3 -> 2 -> 4 -> 35 -> 6 -> 65 -> 23 -> 1 -> 7 -> 8 -> 9 -> 11 -> 21 -> ')
+## expected 1 - 2 - 3
+print ('         ', union(linked_list_5,linked_list_6))
+print('expected  1 -> 2 -> 3 -> ')
 ## expected empty
-print (intersection(linked_list_3,linked_list_4))
+print (intersection(linked_list_5,linked_list_6))
+print('expected empty')
+
+
+# Test case 3
+print('____Test___Case___3')
+linked_list_7 = LinkedList([])
+linked_list_8 = LinkedList([])
+## expected 3 -> 2 -> 4 -> 35 -> 6 -> 65 -> 23 -> 1 -> 7 -> 8 -> 9 -> 11 -> 21 -> 
+print ('         ', union(linked_list_7,linked_list_8))
+print('expected  empty')
+## expected empty
+print (intersection(linked_list_7,linked_list_8))
 print('expected empty')
