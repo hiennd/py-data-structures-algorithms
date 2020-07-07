@@ -7,7 +7,7 @@ def rearrange_digits(input_list):
     Args:
        input_list(list): Input List
     Returns:
-       (int),(int): Two maximum sums
+       [(int),(int)]: of two maximum sums
     """
     ## step 1 sort with merge-sort O(nlogn) [2, 4, 5, 6, 8, 9]
     sorted_list = merge_sort(input_list)
@@ -61,7 +61,7 @@ class TestRearrangeDigits(unittest.TestCase):
     def test_1(self):
         print(f'Test rearrange_digits([1, 2, 3, 4, 5]) expected [542, 31]. Found:{rearrange_digits([1, 2, 3, 4, 5])}')
         self.assertEqual([531, 42], rearrange_digits([1, 2, 3, 4, 5]))
-        print(f'rearrange_digits([4, 6, 2, 5, 9, 8]) expected [964, 852].')
+        print(f'rearrange_digits([4, 6, 2, 5, 9, 8]) expected [964, 852]. Found {rearrange_digits([4, 6, 2, 5, 9, 8])}')
         self.assertEqual([964, 852], rearrange_digits([4, 6, 2, 5, 9, 8]))
 
     def test_merge_two_sorted_lists(self):
