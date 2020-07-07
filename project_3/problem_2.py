@@ -14,13 +14,9 @@ def rotated_array_search(input_list, number):
         return binary_search(input_list, number)
     if input_list[0] > number:
         ## go to smaller part
-        if (input_list[0]  == 6 and  pivot_index == 0):
-            print('debuging', input_list[pivot_index::])
         return binary_search(input_list[pivot_index::], number) + pivot_index
     else:
         ## go to the bigger part
-        if (input_list[0]  == 6 and pivot_index == 0):
-            print('debuging', input_list[0:pivot_index])
         return binary_search(input_list[0:pivot_index], number)
 
 
@@ -76,7 +72,7 @@ class TestSearch(unittest.TestCase):
             input_list = test_case[0]
             number = test_case[1]
             found_index = rotated_array_search(input_list, number)
-            print(f'Found {number} at index: {found_index}')
+            #print(f'Found {number} at index: {found_index}')
             self.assertEqual(linear_search(input_list, number), found_index)
             if linear_search(input_list, number) == found_index:
                 print(f"{message}: Pass")
