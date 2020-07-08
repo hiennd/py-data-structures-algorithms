@@ -14,7 +14,7 @@ def sort_012(input_list):
     low_index = 0
     mid_index = 0
     high_index = len(input_list) - 1
-    ## Now traverse only ONCE but with some step-backs
+    ## Now traverse the list with 3 pointers
     while mid_index <= high_index:
         if input_list[mid_index] == 0:
             swap(input_list, low_index, mid_index)
