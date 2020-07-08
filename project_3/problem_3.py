@@ -7,8 +7,10 @@ def rearrange_digits(input_list):
     Args:
        input_list(list): Input List
     Returns:
-       [(int),(int)]: of two maximum sums
+       [(int),(int)]: of two maximum sums if there are more than two elements in the list, else None.
     """
+    if not input_list or len(input_list) < 2:
+        return None
     ## step 1 sort with merge-sort O(nlogn) [2, 4, 5, 6, 8, 9]
     sorted_list = merge_sort(input_list)
     ## step 2 build first number from odds postions 964 and even postions 852
@@ -58,11 +60,24 @@ def merge(list_1, list_2):
 
 class TestRearrangeDigits(unittest.TestCase):
 
-    def test_1(self):
+    def test_rearrange_digits(self):
         print(f'Test rearrange_digits([1, 2, 3, 4, 5]) expected [542, 31]. Found:{rearrange_digits([1, 2, 3, 4, 5])}')
         self.assertEqual([531, 42], rearrange_digits([1, 2, 3, 4, 5]))
+
         print(f'rearrange_digits([4, 6, 2, 5, 9, 8]) expected [964, 852]. Found {rearrange_digits([4, 6, 2, 5, 9, 8])}')
         self.assertEqual([964, 852], rearrange_digits([4, 6, 2, 5, 9, 8]))
+    
+    def test_rearrange_digits_empty(self):
+        self.assertEqual(None, rearrange_digits([]))
+    
+    def test_rearrange_digits_one_digit(self):
+        self.assertEqual(None, rearrange_digits(['1']))
+
+    def test_rearrange_digits_two_digits(self):
+        self.assertEqual([2, 1], rearrange_digits(['1', '2']))
+
+    def test_rearrange_digits_None(self):
+        self.assertEqual(None, rearrange_digits(None))
 
     def test_merge_two_sorted_lists(self):
         self.assertEqual([0,1, 2, 3, 6, 9], merge([0, 2, 3], [1, 6, 9]))
