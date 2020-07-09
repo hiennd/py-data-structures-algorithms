@@ -23,7 +23,7 @@ class LRU_Cache(object):
         return value
     
     '''
-        Setting  into an empty LRU_Cache takes no effects but no warning
+        Setting  into an empty LRU_Cache takes no effects but only warning
     '''
     def set(self, key, value):
         if not self.capacity:
